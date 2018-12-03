@@ -1,0 +1,26 @@
+language: c
+
+compiler:
+  - gcc #8.1.0
+  - clang #7.0.0
+  
+runtime:
+  nodePool: dynamic__x86_64__Ubuntu_14_04__c4_large
+  
+build: 
+  pre_ci_boot:
+    image_name: drydock/u14cppall
+    image_tag: master
+    pull: true
+    
+  ci:
+    - ls
+    - pwd
+    - docker pull shippabledocker/sample_node_pvt:ecr
+    
+integrations:
+    
+  hub:
+ #Docker integration
+    - integrationName: ship-docker
+      type: dockerRegistryLogin
